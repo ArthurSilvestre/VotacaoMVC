@@ -8,13 +8,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import controller.TelaResultadoController;
+
 @SuppressWarnings("serial")
 public class TelaResultadoView extends Window {
 
 	private Map<String,Label> labels = new HashMap<String,Label>();	
 	
-    public TelaResultadoView(Frame parent){
+	private TelaResultadoController telaResultadoController;
+	
+    public TelaResultadoView(Frame parent, TelaResultadoController telaResultadoController){
         super(parent);
+        
+        this.telaResultadoController = telaResultadoController;
+        
         this.setSize(110,120);
         this.setLayout(new GridLayout(0,2));
         
@@ -39,9 +46,7 @@ public class TelaResultadoView extends Window {
     } 
     
     public void novoVoto(String opcao, int nvotos) {
-        Label votos;
-        votos = labels.get(opcao);
-        votos.setText(""+nvotos);
+        this.labels = telaResultadoController.novoVoto(this.labels, opcao, nvotos);
     }    
     
 }

@@ -8,7 +8,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import controller.TelaResultadoController;
+import controller.TelaResultadoPercentualController;
 import controller.TelaVotacaoController;
+import model.TelaResultado;
+import model.TelaResultadoPercentual;
 
 @SuppressWarnings("serial")
 public class TelaVotacaoView extends Frame implements ActionListener  {
@@ -25,9 +29,9 @@ public class TelaVotacaoView extends Frame implements ActionListener  {
 
 		this._telaVotacaoController = telaVotacaoController;
 		
-		telaResultadoView = new TelaResultadoView(this);
+		telaResultadoView = new TelaResultadoView(this, new TelaResultadoController(new TelaResultado()));
 		telaResultadoView.setLocation(120, 5);
-		telaResultadoPercentualView = new TelaResultadoPercentualView(this);
+		telaResultadoPercentualView = new TelaResultadoPercentualView(this, new TelaResultadoPercentualController(new TelaResultadoPercentual()));
 		telaResultadoPercentualView.setLocation(250, 5);
 
 		criarBotoes();

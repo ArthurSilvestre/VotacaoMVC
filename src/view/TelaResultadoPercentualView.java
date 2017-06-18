@@ -8,13 +8,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import controller.TelaResultadoPercentualController;
+
 @SuppressWarnings("serial")
 public class TelaResultadoPercentualView extends Window {
 
 	private Map<String, Label> labels = new HashMap<String, Label>();
 
-	public TelaResultadoPercentualView(Frame parent) {
+	private TelaResultadoPercentualController telaResultadoPercentualController;
+	
+	public TelaResultadoPercentualView(Frame parent, TelaResultadoPercentualController telaResultadoPercentualController) {
 		super(parent);
+		
+		this.telaResultadoPercentualController = telaResultadoPercentualController;
+		
 		this.setSize(110, 120);
 		this.setLayout(new GridLayout(0, 2));
 
@@ -39,8 +46,7 @@ public class TelaResultadoPercentualView extends Window {
 	}
 	
 	public void novoVoto(Map<String, Integer> votos, int totalVotos) {
-		for (Map.Entry<String, Label> label : labels.entrySet())
-			label.getValue().setText((votos.get(label.getKey()) * 100 / totalVotos) + "%");
+		this.labels =  telaResultadoPercentualController.novoVoto(this.labels, votos, totalVotos);
 	}	
 	
 }
